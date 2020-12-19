@@ -9,101 +9,47 @@ class Document:
 </body>
 </html>
 """
-        base=self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def title(self,text):
-        self.text=text
         index=self.base.find("</head>")
-        self.base=self.base[:index]+"    <title>"+self.text+"</title>"+"""
+        self.base=self.base[:index]+"    <title>{}</title>".format(text)+"""
 """+self.base[index:]
-        base=self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def paragraph(self,text):
-        self.text = text
         index = self.base.find("</body>")
-        self.base = self.base[:index] + "    <p>" + self.text + "</p>" + """
+        self.base = self.base[:index] + "    <p>{}</p>".format(text) + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def br(self):
         index = self.base.find("</body>")
         self.base = self.base[:index] + "    <br>"+ """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def heading(self,text,number):
-        self.number = number
-        self.text = text
         index = self.base.find("</body>")
-        self.base = self.base[:index] + "    <h"+str(self.number)+">" + self.text + "</h"+str(self.number)+">" + """
+        self.base = self.base[:index] + "    <h{}>{}</h{}>".format(str(number),text,str(number)) + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def image(self,link,width="",height=""):
-        self.link=link
-        self.width=width
-        self.height=height
         index = self.base.find("</body>")
-        self.base = self.base[:index] + '    <img src="'+self.link+'" width="'+str(self.width)+'" height="'+str(self.height)+'" >' + """
+        self.base = self.base[:index] + '    <img src="{}" width="{}" height="{}" >'.format(link,str(width),str(height)) + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def audio(self,link):
-        self.link = link
         index = self.base.find("</body>")
         self.base = self.base[:index] + '    <audio controls="">'+"""
-        """+'<source src="' + self.link +'" type="audio/mpeg">' + """
+        """+'<source src="{}" type="audio/mpeg">'.format(link) + """
     </audio>""" + """
 """+self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def video(self,link,width="",height=""):
-        self.link = link
-        self.width = width
-        self.height = height
         index = self.base.find("</body>")
-        self.base = self.base[:index] + '    <video controls="" width="'+str(self.width)+'" heigth="'+str(self.height)+'">' + """
-        """ + '<source src="' + self.link + '">' + """
+        self.base = self.base[:index] + '    <video controls="" width="{}" heigth="{}">'.format(str(width),str(height)) + """
+        """ + '<source src="{}">'.format(link) + """
     </video>""" + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def input(self,text):
-        self.text = text
         index = self.base.find("</body>")
-        self.base = self.base[:index] + '    <input placeholder="' + self.text + '">' + """
+        self.base = self.base[:index] + '    <input placeholder="{}">'.format(text) + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def textarea(self, text):
-        self.text = text
         index = self.base.find("</body>")
-        self.base = self.base[:index] + '    <textarea placeholder="' + self.text + '">' + '</textarea>'+"""
+        self.base = self.base[:index] + '    <textarea placeholder="{}"></textarea>'.format(text)+"""
  """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def ordered_list(self,elements):
-        self.elements=elements
         index = self.base.find("</body>")
         self.base = self.base[:index] + '   <ol>' +"""
 """ + self.base[index:]
@@ -112,18 +58,13 @@ class Document:
             print("Enter ", i + 1, " element of list")
             data = str(input())
             index = self.base.find("</body>")
-            self.base = self.base[:index] + "       <li>" + data + "</li>" + """
+            self.base = self.base[:index] + "       <li>{}</li>".format(data) + """
 """ + self.base[index:]
 
         index = self.base.find("</body>")
         self.base = self.base[:index] + "    </ol>" + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def unordered_list(self,elements):
-        self.elements=elements
         index = self.base.find("</body>")
         self.base = self.base[:index] + '    <ul>' +"""
 """ + self.base[index:]
@@ -132,53 +73,29 @@ class Document:
             print("Enter ", i + 1, " element of list")
             data = str(input())
             index = self.base.find("</body>")
-            self.base = self.base[:index] + "       <li>" + data + "</li>" + """
+            self.base = self.base[:index] + "       <li>{}</li>".format(data) + """
 """ + self.base[index:]
 
         index = self.base.find("</body>")
         self.base = self.base[:index] + "    </ul>" + """
 """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def strong(self,text):
-        self.text=text
         index=self.base.find("</body>")
-        self.base=self.base[:index]+"    <strong>"+self.text+"</strong>"+"""
+        self.base=self.base[:index]+"    <strong>{}</strong>".format(text)+"""
 """+self.base[index:]
-        base=self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def small(self,text):
-        self.text=text
         index=self.base.find("</body>")
-        self.base=self.base[:index]+"    <small>"+self.text+"</small>"+"""
+        self.base=self.base[:index]+"    <small>{}</small>".format(text)+"""
 """+self.base[index:]
-        base=self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def emphasized(self,text):
-        self.text=text
         index=self.base.find("</body>")
-        self.base=self.base[:index]+"    <em>"+self.text+"</em>"+"""
+        self.base=self.base[:index]+"    <em>{}</em>".format(text)+"""
 """+self.base[index:]
-        base=self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
     def anchor(self, link,text):
-        self.link = link
-        self.text = text
         index = self.base.find("</body>")
-        self.base = self.base[:index] + '    <a href="' + self.link + '" target="_blank">' + self.text + '</a>'+"""
+        self.base = self.base[:index] + '    <a href="{}" target="_blank">{}</a>'.format(link,text)+"""
  """ + self.base[index:]
-        base = self.base
-        self = open("page.html", "w+", encoding="utf-8")
-        self.write(base)
-        self.close()
+
 page=Document()
 page.title("Html project")
 page.heading("Heading of project",1)
@@ -212,5 +129,9 @@ page.heading("Anchor",3)
 page.anchor("https://docs.google.com/spreadsheets/d/1Kb4GUd7eCAL-PyjazXGn95UHLBDz1a23cf6zxh6GEaI/edit#gid=223114605","Google docs: 2020-fall-cs-students")
 page.heading("Video of ending project",3)
 page.video("Хлам/video.mp4",500)
+
+html = open("page.html", "w+", encoding="utf-8")
+html.write(page.base)
+html.close()
 import webbrowser
 webbrowser.open("C:/Users/vadim/PycharmProjects/pythonProject1/page.html")
