@@ -15,14 +15,14 @@ class Document:
         else:
             index=self.base.find("</head>")
             self.base=self.base[:index]+"    <title>{}</title>".format(text)+"""
-    """+self.base[index:]
+"""+self.base[index:]
     def paragraph(self,text,output = None):
         if output == 1:
             return str("<p>{}</p>".format(text))
         else:
             index = self.base.find("</body>")
             self.base = self.base[:index] + "    <p>{}</p>".format(text) + """
-    """ + self.base[index:]
+""" + self.base[index:]
     def br(self):
         index = self.base.find("</body>")
         self.base = self.base[:index] + "    <br>"+ """
@@ -33,14 +33,14 @@ class Document:
         else:
             index = self.base.find("</body>")
             self.base = self.base[:index] + "    <h{}>{}</h{}>".format(str(number),text,str(number)) + """
-    """ + self.base[index:]
+""" + self.base[index:]
     def image(self,link,width="",height="",output = None):
         if output == 1:
             return str('<img src="{}" width="{}" height="{}" >'.format(link,str(width),str(height)))
         else:
             index = self.base.find("</body>")
             self.base = self.base[:index] + '    <img src="{}" width="{}" height="{}" >'.format(link,str(width),str(height)) + """
-    """ + self.base[index:]
+""" + self.base[index:]
     def audio(self,link,output = None):
         if output == 1:
             return str("""<audio controls="">
@@ -51,7 +51,7 @@ class Document:
             self.base = self.base[:index] + '    <audio controls="">'+"""
             """+'<source src="{}" type="audio/mpeg">'.format(link) + """
         </audio>""" + """
-    """+self.base[index:]
+"""+self.base[index:]
     def video(self,link,width="",height="",output = None):
         if output == 1:
             return str("""<video controls="" width="{}" heigth="{}">
@@ -61,25 +61,25 @@ class Document:
             index = self.base.find("</body>")
             self.base = self.base[:index] + '    <video controls="" width="{}" heigth="{}">'.format(str(width),str(height)) + """
             """ + '<source src="{}">'.format(link) + """
-        </video>""" + """
-    """ + self.base[index:]
+    </video>""" + """
+""" + self.base[index:]
     def input(self,text,output = None):
         if output == 1:
             return str('<input placeholder="{}">'.format(text))
         else:
             index = self.base.find("</body>")
             self.base = self.base[:index] + '    <input placeholder="{}">'.format(text) + """
-    """ + self.base[index:]
+""" + self.base[index:]
     def textarea(self, text,output = None):
         if output == 1:
             return str('<textarea placeholder="{}"></textarea>'.format(text))
         else:
             index = self.base.find("</body>")
             self.base = self.base[:index] + '    <textarea placeholder="{}"></textarea>'.format(text)+"""
-     """ + self.base[index:]
+""" + self.base[index:]
     def ordered_list(self,elements):
         index = self.base.find("</body>")
-        self.base = self.base[:index] + '   <ol>' +"""
+        self.base = self.base[:index] + '    <ol>' +"""
 """ + self.base[index:]
 
         for i in range(elements):
@@ -113,28 +113,28 @@ class Document:
         else:
             index=self.base.find("</body>")
             self.base=self.base[:index]+"    <strong>{}</strong>".format(text)+"""
-    """+self.base[index:]
+"""+self.base[index:]
     def small(self,text,output = None):
         if output == 1:
             return str("<small>{}</small>".format(text))
         else:
             index=self.base.find("</body>")
             self.base=self.base[:index]+"    <small>{}</small>".format(text)+"""
-    """+self.base[index:]
+"""+self.base[index:]
     def emphasized(self,text,output = None):
         if output == 1:
             return str("<em>{}</em>".format(text))
         else:
             index=self.base.find("</body>")
             self.base=self.base[:index]+"    <em>{}</em>".format(text)+"""
-    """+self.base[index:]
+"""+self.base[index:]
     def anchor(self, link,text,output = None):
         if output == 1:
             return str('<a href="{}" target="_blank">{}</a>'.format(link,text))
         else:
             index = self.base.find("</body>")
             self.base = self.base[:index] + '    <a href="{}" target="_blank">{}</a>'.format(link,text)+"""
-     """ + self.base[index:]
+""" + self.base[index:]
 
 page=Document()
 page.title("Html project")
